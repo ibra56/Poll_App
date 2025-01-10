@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poll App</title>
+    <style>
+      /* General Styles */
+      
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        padding: 1rem;
+        color: #444;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .polls {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .polls li {
+        margin: 0.5rem 0;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9fb;
+        transition: transform 0.2s, background-color 0.2s;
+      }
+
+      .polls li a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .polls li:hover {
+        transform: translateY(-2px);
+        background-color: #eef2f7;
+      }
+
+      .no-polls {
+        text-align: center;
+        padding: 2rem;
+        font-size: 1.2rem;
+        color: #888;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem 0;
+        background-color: #222;
+        color: #fff;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to the Poll App</h1>
+    <div class="container">
+      {% if latest_question_list %}
+        <ul class="polls">
+          {% for question in latest_question_list %}
+            <li>
+              <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="no-polls">No polls are available at the moment. Check back later!</p>
+      {% endif %}
+    </div>
+    <footer>
+      &copy; 2025 Poll App. All rights reserved.
+    </footer>
+  </body>
+</html>
