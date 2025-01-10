@@ -6,7 +6,7 @@
     <title>Poll App</title>
     <style>
       /* General Styles */
-      
+
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -81,7 +81,7 @@
         <ul class="polls">
           {% for question in latest_question_list %}
             <li>
-              <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a>
+              <a href="{% url 'detail' question_id %}">{{ question.question_text }}</a>
             </li>
           {% endfor %}
         </ul>

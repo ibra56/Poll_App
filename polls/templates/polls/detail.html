@@ -61,6 +61,11 @@
       .cta a:hover {
         background-color: #0056b3;
       }
+      .cta ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
       footer {
         text-align: center;
@@ -85,9 +90,14 @@
     <h1>Welcome to the Poll App</h1>
     <div class="container">
       {% if question %}
-        <p class="poll-question">{{ question }}</p>
+        <p class="poll-question">{{ question.question_text }}</p>
         <div class="cta">
-          <a href="#">Vote Now</a>
+            <ul class="polls">
+              {% for choice in question.choice_set.all %}
+                <li>{{ choice.choice_text }}</li>
+              {% endfor %}
+            </ul>
+          {% comment %} <a href="#">Vote Now</a> {% endcomment %}
         </div>
       {% else %}
         <p class="poll-question">No poll is currently available. Check back soon!</p>
