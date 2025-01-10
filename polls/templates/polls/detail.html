@@ -47,6 +47,17 @@
         margin-top: 1.5rem;
       }
 
+      .polls {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .polls li {
+        margin: 0.5rem 0;
+        font-size: 1.2rem;
+      }
+
       .cta a {
         display: inline-block;
         padding: 0.8rem 1.5rem;
@@ -60,11 +71,6 @@
 
       .cta a:hover {
         background-color: #0056b3;
-      }
-      .cta ul{
-        list-style: none;
-        padding: 0;
-        margin: 0;
       }
 
       footer {
@@ -92,13 +98,31 @@
       {% if question %}
         <p class="poll-question">{{ question.question_text }}</p>
         <div class="cta">
-            <ul class="polls">
-              {% for choice in question.choice_set.all %}
-                <li>{{ choice.choice_text }}</li>
-              {% endfor %}
-            </ul>
-          {% comment %} <a href="#">Vote Now</a> {% endcomment %}
+          <ul class="polls">
+            {% for choice in question.choice_set.all %}
+              <li>{{ choice.choice_text }}</li>
+            {% endfor %}
+          </ul>
         </div>
+        <form action="{% url 'vote' question.id %}" method="post">
+          {% csrf_token %}
+          <fieldset>
+            <legend><h2>Vote on this poll</h2></legend>
+            {% if error_message %}
+              <p style="color: red;"><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            {% for choice in question.choice_set.all %}
+              <input
+                type="radio"
+                name="choice"
+                id="choice{{ forloop.counter }}"
+                value="{{ choice.id }}"
+              />
+              <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+            {% endfor %}
+          </fieldset>
+          <button type="submit" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem;">Vote</button>
+        </form>
       {% else %}
         <p class="poll-question">No poll is currently available. Check back soon!</p>
       {% endif %}
