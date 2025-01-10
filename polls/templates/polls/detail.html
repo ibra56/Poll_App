@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poll App</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e9ecef;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      h1 {
+        text-align: center;
+        padding: 1.5rem 0;
+        color: #555;
+        background: #f8f9fa;
+        border-bottom: 2px solid #ddd;
+        margin: 0;
+        font-size: 2rem;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .poll-question {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        color: #007bff;
+      }
+
+      .cta {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+
+      .cta a {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .cta a:hover {
+        background-color: #0056b3;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem 0;
+        background-color: #343a40;
+        color: #f8f9fa;
+        font-size: 0.9rem;
+      }
+
+      footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to the Poll App</h1>
+    <div class="container">
+      {% if question %}
+        <p class="poll-question">{{ question }}</p>
+        <div class="cta">
+          <a href="#">Vote Now</a>
+        </div>
+      {% else %}
+        <p class="poll-question">No poll is currently available. Check back soon!</p>
+      {% endif %}
+    </div>
+    <footer>
+      &copy; 2025 Poll App. All rights reserved. <a href="/privacy-policy">Privacy Policy</a>
+    </footer>
+  </body>
+</html>
