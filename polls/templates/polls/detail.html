@@ -104,7 +104,7 @@
             {% endfor %}
           </ul>
         </div>
-        <form action="{% url 'vote' question.id %}" method="post">
+        <form action="{% url 'polls:vote' question.id %}" method="post">
           {% csrf_token %}
           <fieldset>
             <legend><h2>Vote on this poll</h2></legend>
@@ -121,7 +121,7 @@
               <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
             {% endfor %}
           </fieldset>
-          <button type="submit" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem;">Vote</button>
+          <button type="submit" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem;" value="Vote">Vote</button>
         </form>
       {% else %}
         <p class="poll-question">No poll is currently available. Check back soon!</p>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poll Results</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      h1 {
+        text-align: center;
+        color: #007bff;
+        padding: 1.5rem 0;
+        margin: 0;
+        font-size: 2rem;
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #ddd;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .poll-results {
+        margin: 1.5rem 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .poll-results li {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f9f9fb;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .poll-results li span {
+        font-weight: bold;
+        color: #444;
+      }
+
+      .vote-again {
+        display: block;
+        text-align: center;
+        margin: 2rem auto;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        width: 200px;
+        transition: background-color 0.3s ease;
+      }
+
+      .vote-again:hover {
+        background-color: #0056b3;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem 0;
+        background-color: #343a40;
+        color: #f8f9fa;
+        font-size: 0.9rem;
+      }
+
+      footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ question.question_text }}</h1>
+    <div class="container">
+      <ul class="poll-results">
+        {% for choice in question.choice_set.all %}
+          <li>
+            <span>{{ choice.choice_text }}</span>
+            <span>{{ choice.votes }} vote{{ choice.votes|pluralize }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'polls:detail' question.id %}" class="vote-again">Vote again?</a>
+    </div>
+    <footer>
+      &copy; 2025 Poll App. All rights reserved. <a href="/privacy-policy">Privacy Policy</a>
+    </footer>
+  </body>
+</html>
