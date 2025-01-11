@@ -29,7 +29,7 @@ def vote(request, question_id):
         # Redisplay the question voting form.
         return render(
             request, 
-            'polls/detail.html', 
+            'polls/vote.html', 
             {
             'question': question,
             'error_message': "You didn't select a choice.",
@@ -37,4 +37,4 @@ def vote(request, question_id):
     else:
         selected_choice.votes = F('votes') + 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('results', args=(question.id,)))

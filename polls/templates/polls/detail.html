@@ -104,7 +104,7 @@
             {% endfor %}
           </ul>
         </div>
-        <form action="{% url 'polls:vote' question.id %}" method="post">
+        <form action="{% url 'vote' question.id %}" method="post">
           {% csrf_token %}
           <fieldset>
             <legend><h2>Vote on this poll</h2></legend>
@@ -128,7 +128,7 @@
       {% endif %}
     </div>
     <footer>
-      &copy; 2025 Poll App. All rights reserved. <a href="/privacy-policy">Privacy Policy</a>
+      &copy; 2025 Poll App. All rights reserved. <a href="#">Privacy Policy</a>
     </footer>
   </body>
 </html>
