@@ -27,7 +27,7 @@ Before running the application, ensure the following are installed:
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/yourusername/poll-app.git
+git clone https://github.com/ibra56/poll-app.git
 cd poll-app
 
 Set Up Virtual Environment
